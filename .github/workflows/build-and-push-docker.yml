@@ -1,0 +1,37 @@
+name: Build and Push Docker Image
+
+on:
+  release:
+    types: [published]  # Trigger this action when a release is created (published)
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Check out the repository
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Step 2: Set up Docker Buildx (for multi-platform builds)
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      # Step 3: Log in to GitHub Container Registry
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}  # GitHub automatically provides a token
+
+      # Step 4: Build and push the Docker image
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          push: true
+          tags: ghcr.io/${{ github.repository_owner }}/aui-dev-container:${{ github.ref_name }}  # This will tag the image with the release version
+
+      # Optional Step 5: Clean up (remove unused images)
+      - name: Clean up
+        run: docker system prune -af
