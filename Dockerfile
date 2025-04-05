@@ -92,4 +92,4 @@ ENV GIT_EDITOR="code --wait"
 ENV EDITOR="code --wait"
 
 RUN git clone --depth 1 https://github.com/ohmyzsh/ohmyzsh.git .oh-my-zsh
-
+RUN /go/bin/go install github.com/spf13/cobra-cli@latest
