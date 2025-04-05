@@ -57,6 +57,7 @@ FROM ubuntu:24.04
 COPY --from=build --chown=root:root /usr/local/cargo/bin/lcov2xml /usr/local/bin/lcov2xml
 COPY --from=build --chown=root:root /usr/local/cargo/bin/cobertura_split /usr/local/bin/cobertura_split
 COPY --from=build2 --chown=root:root /tmp/node /opt/node
+COPY --from=build2 --chown=root:root /tmp/go /go
 COPY --from=build2 --chown=root:root /nanolayer /nanolayer
 COPY --from=build3 --chown=root:root /tmp/bfs/bin/bfs /usr/local/bin/bfs
 
@@ -80,7 +81,6 @@ WORKDIR /tmp
 RUN uv pip install --break-system-packages --system pre-commit
 
 COPY --chown=vscode:vscode zshrc /home/vscode/.zshrc
-COPY --chown=vscode:vscode --from=build2 /tmp/go /go
 
 RUN userdel ubuntu && useradd -m -d /home/vscode -U -u 1000 -s /bin/zsh vscode && chown vscode:vscode -R /home/vscode
 RUN echo "vscode ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/vscode

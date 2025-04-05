@@ -126,7 +126,7 @@ alias ls="eza --smart-group --group-directories-first"
 alias cd="z"
 alias cat="bat"
 
-export PATH=$PATH:/go/bin
+export PATH=/go/bin:$HOME/go/bin:$PATH
 
 DISABLE_AUTO_UPDATE=true
 DISABLE_UPDATE_PROMPT=true
