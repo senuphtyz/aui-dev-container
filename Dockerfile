@@ -15,7 +15,7 @@ RUN mkdir -p /tmp/node && \
 
 RUN mkdir -p /tmp/go && \
   curl -L "https://go.dev/dl/go1.24.2.linux-amd64.tar.gz" -o go.tar.gz && \
-  tar -C /tmp/go --strip-components=1 -xvf go.tar.gz
+  tar -C /tmp/go --strip-components=1 -xf go.tar.gz
 
 RUN curl -sfL https://github.com/devcontainers-contrib/nanolayer/releases/download/v0.5.6/nanolayer-x86_64-unknown-linux-gnu.tgz | tar fxvz - -C / 
 
