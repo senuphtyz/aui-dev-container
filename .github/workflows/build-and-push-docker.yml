@@ -4,6 +4,9 @@ on:
   release:
     types: [published]  # Trigger this action when a release is created (published)
 
+env:
+  REGISTRY: ghcr.io
+
 jobs:
   build:
     runs-on: ubuntu-latest
