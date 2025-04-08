@@ -67,7 +67,7 @@ RUN ln -s /opt/node/bin/node /usr/local/bin/node && \
 
 RUN npm install -g yarn
 
-RUN /nanolayer install apt-get zip,make,ca-certificates,git,zsh,python3.12,sudo,wget,curl,libonig5
+RUN /nanolayer install apt-get zip,make,ca-certificates,git,zsh,python3.12,sudo,wget,curl,libonig5,net-tools,openssh-client
 RUN /nanolayer install gh-release 'junegunn/fzf' 'fzf'
 RUN /nanolayer install gh-release --asset-regex '.tar.gz$' 'eza-community/eza' 'eza'
 RUN /nanolayer install gh-release 'ajeetdsouza/zoxide' 'zoxide'
